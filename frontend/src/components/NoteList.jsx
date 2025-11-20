@@ -1,4 +1,3 @@
-// client/src/components/NoteList.jsx (SIMPLIFIED STYLING)
 import React from 'react';
 
 function NoteList({ notes, onEdit, onDelete }) {
@@ -17,7 +16,6 @@ function NoteList({ notes, onEdit, onDelete }) {
                         <h3 className="text-lg font-medium mb-1 text-gray-800">
                             {note.title}
                         </h3>
-                        {/* Truncated content for cleaner list view */}
                         <p className="text-gray-600 mb-3 text-sm line-clamp-2">
                             {note.content}
                         </p>

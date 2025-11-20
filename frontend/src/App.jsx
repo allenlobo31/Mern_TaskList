@@ -1,4 +1,3 @@
-// client/src/App.jsx
 import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import NoteList from './components/NoteList';
@@ -10,7 +9,6 @@ function App() {
     const [notes, setNotes] = useState([]);
     const [editingNote, setEditingNote] = useState(null); 
 
-    // READ: Fetches all notes
     const fetchNotes = useCallback(async () => {
         try {
             const response = await axios.get(API_URL);
@@ -25,18 +23,15 @@ function App() {
         fetchNotes();
     }, [fetchNotes]);
 
-    // CREATE / UPDATE
     const handleSaveNote = async (noteData) => {
         try {
             let response;
             if (editingNote) {
-                // UPDATE
                 response = await axios.put(`${API_URL}/${editingNote._id}`, noteData);
                 setNotes(notes.map(n => n._id === editingNote._id ? response.data : n));
                 setEditingNote(null); 
                 console.log("UPDATE JSON:", response.data);
             } else {
-                // CREATE
                 response = await axios.post(API_URL, noteData);
                 setNotes([response.data, ...notes]);
                 console.log("CREATE JSON:", response.data);
@@ -46,7 +41,6 @@ function App() {
         }
     };
 
-    // DELETE
     const handleDeleteNote = async (id) => {
         try {
             const response = await axios.delete(`${API_URL}/${id}`);
@@ -66,7 +60,6 @@ function App() {
             </header>
             
             <main className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8">
-                {/* Form component is sticky on desktop */}
                 <NoteForm 
                     onSave={handleSaveNote} 
                     currentNote={editingNote}

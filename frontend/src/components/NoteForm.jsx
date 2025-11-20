@@ -1,4 +1,3 @@
-// client/src/components/NoteForm.jsx (SIMPLIFIED STYLING)
 import React, { useState, useEffect } from 'react';
 
 const initialNoteState = { title: '', content: '' };
@@ -18,10 +17,9 @@ function NoteForm({ onSave, currentNote, onCancel }) {
     const handleSubmit = (e) => {
         e.preventDefault();
         
-        // CRITICAL FRONTEND VALIDATION: Prevents empty data being sent.
         if (!note.title.trim() || !note.content.trim()) {
             alert("Title and Content must not be empty.");
-            return; // STOP EXECUTION
+            return; 
         }
 
         onSave(note);
